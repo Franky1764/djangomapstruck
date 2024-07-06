@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Mapstruck</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/forms.css">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="logo">Mapstruck</h1>
+            <nav>
+                <ul class="nav" id="Menu">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="nosotros.html">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="servicios.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="contact">
+        <h1>Contáctanos</h1>
+        <form id="contactForm" action="contact.php" method="POST" novalidate>
+            <div class="form-group">
+                <label for="Name"><b>Nombre</b></label>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Escriba su nombre completo" required>
+                <div class="invalid-feedback">Por favor, ingrese su nombre.</div>
+            </div>
+            <div class="form-group">
+                <label for="Email"><b>Email</b></label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="ejemplo@email.com" required>
+                <div class="invalid-feedback">Por favor, ingrese un correo electrónico válido.</div>
+            </div>
+            <div class="form-group">
+                <label for="Subject"><b>Motivo de Contacto</b></label>
+                <input type="text" class="form-control" id="Subject" name="Subject" placeholder="Escriba el motivo del contacto" required>
+                <div class="invalid-feedback">Por favor, ingrese el motivo del contacto.</div>
+            </div>
+            <div class="form-group">
+                <label for="Message"><b>Mensaje</b></label>
+                <textarea class="form-control" id="Message" name="Message" rows="5" placeholder="Escriba su mensaje aquí" required></textarea>
+                <div class="invalid-feedback">Por favor, ingrese su mensaje.</div>
+            </div>
+            <button type="submit" class="btn btn-dark btn-block">Enviar Mensaje</button>
+        </form>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Mapstruck. Todos los derechos reservados.</p>
+            <p>Contacto | Enlaces Rápidos | Redes Sociales</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Validación del formulario
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                // Bucle sobre ellos y prevenir el envío
+                Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>

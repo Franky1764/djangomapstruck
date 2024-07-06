@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: whitesmoke;
+    font-family: 'Arial';
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav .nav-link {
+    font-size: 1.1rem;
+}
+
+#Menu li > a {
+    font-size: 16px;
+    font-weight: bold;
+    color: gray;
+}
+
+#Menu form > ::placeholder {
+    font-size: 14px;
+}
+
+#Menu form > button {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.contact {
+    width: 100%;
+    max-width: 480px;
+    margin: 20px auto;
+    padding: 40px;
+    background: gray;
+    border-radius: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+label {
+    color: white;
+    font-size: 17px;
+}
+
+.form-control {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+    margin-bottom: 15px;
+}
+
+#Message {
+    height: 100px;
+}
+
+.btn-block {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 17px;
+    background-color: #000;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.btn-block:hover {
+    background-color: #333;
+}
+
+.contact input[type="checkbox"] {
+    color: whitesmoke;
+}
+
+.footer {
+    margin-top: auto;
+    display: table;
+    width: 100%;
+    height: 13vh;
+    background-color: #343a40;
+    color: whitesmoke;
+    text-align: center;
+    padding: 10px 0;
+    bottom: 0;
+}
