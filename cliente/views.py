@@ -1,14 +1,17 @@
 from django.shortcuts import render
 
-# Create your views here.
-def index (request):
-    return render(request,'cliente/index.html')
-
-def nosotros (request):
-    return render(request, 'cliente/nosotros.html')
-
-def servicios(request):
-    return render(request, 'cliente/servicios.html')
+def index(request):
+    context = {}
+    return render(request, 'cliente/index.html', context)
 
 def contacto(request):
-    return render(request, 'cliente/contacto.html')
+    context = {}
+    return render(request, 'cliente/contacto.html', context)
+
+def nosotros(request):
+    context = {}
+    return render(request, 'cliente/nosotros.html', context)
+
+def servicios(request):
+    context = {}
+    return render(request, 'cliente/servicios.html', context)

@@ -1,12 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios - Mapstruck</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static'cliente/css/otherstyle.css' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cliente/css/otherstyle.css' %}">
 </head>
 <body>
     <header class="bg-dark text-white text-center py-3">
@@ -28,7 +28,8 @@
             <!-- Card 1 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/Cambio Neumático.jpg" class="card-img-top" alt="Cambio de Neumáticos">
+                    <img src="{% static 'cliente/img/Cambio Neumático.jpg' %}" class="card-img-top" alt="Cambio de Neumáticos">
+                    class="card-img-top" alt="Cambio de Neumáticos">
                     <div class="card-body">
                         <h5 class="card-title">Cambio de Neumáticos</h5>
                         <p class="card-text text-justify">El cambio de neumáticos es un servicio exclusivo que traemos para ti, desde tu casa o desde cualquier lugar de la Región estaremos brindándote la mejor atención y usando las herramientas indicadas para cambiar ese neumático dañado.
@@ -41,7 +42,7 @@
             <!-- Card 2 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/gruas1.png" class="card-img-top" alt="Servicio de Remolque">
+                    <img src="{% static 'cliente/img/gruas1.png' %}" class="card-img-top" alt="Servicio de Remolque">
                     <div class="card-body">
                         <h5 class="card-title">Servicio de Remolque</h5>
                         <p class="card-text text-justify">Nuestro equipo de profesionales altamente capacitados está comprometido con ofrecer soluciones de traslado de motos confiables y seguras. Estamos aquí para asistirte en cualquier momento, del día o de la noche.</p>
@@ -52,7 +53,7 @@
             <!-- Card 3 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/Puente.jpg" class="card-img-top" alt="Puente de batería">
+                    <img src="{% static 'cliente/img/Puente.jpg' %}" class="card-img-top" alt="Puente de batería">
                     <div class="card-body">
                         <h5 class="card-title">Puente de Batería</h5>
                         <p class="card-text text-justify" >¿Te quedaste sin batería? Somos especialistas en hacer puente de batería a domicilio o en el lugar donde te encuentres.
@@ -65,7 +66,7 @@
             <!-- Card 4 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/Recarga bencina.jpeg" class="card-img-top" alt="Recarga de Bencina">
+                    <img src="{% static 'cliente/img/Recarga bencina.jpg' %}" class="card-img-top" alt="Recarga de Bencina">
                     <div class="card-body">
                         <h5 class="card-title">Recarga de Bencina</h5>
                         <p class="card-text text-justify">Imagina que estás viajando y te quedas sin compbustible en medio de la carretera. 
@@ -78,7 +79,7 @@
             <!-- Card 5 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/mecanico a domicilio.jpg" class="card-img-top" alt="Servicio 5">
+                    <img src="{% static 'cliente/img/mecanico a domicilio.jpg' %}" class="card-img-top" alt="Servicio 5">
                     <div class="card-body">
                         <h5 class="card-title">Mantención a Domicilio</h5>
                         <p class="card-text text-justify">Regulamos tus frenos, luces, puestas a punto del motor, ajustes de partida y ralentí, flujo de combustible y medición de capacidad de batería para que la experiencia sea lo más satisfactoria posible.</p>
@@ -89,7 +90,7 @@
             <!-- Card 6 -->
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="./img/Grua Siniestro.jpeg" class="card-img-top" alt="Grua siniestro">
+                    <img src="{% static 'cliente/img/Grua Siniestro.jpg' %}" class="card-img-top" alt="Grua siniestro">
                     <div class="card-body">
                         <h5 class="card-title">Grúa Siniestro</h5>
                         <p class="card-text">Descripción breve del servicio 6.</p>
