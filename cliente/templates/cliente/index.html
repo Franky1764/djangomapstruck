@@ -27,13 +27,13 @@
             <h1 class="display-4">El Mejor Servicio de Grúas</h1>   
             <h1 class="display-4">Para su Moto</h1>
             <p class="lead">Transporte y Rescate Seguro en Ruta.</p>
-            <a class="btn btn-success btn-lg" href="#" role="button">Ver Servicios</a>
+            <a class="btn btn-success btn-lg" href="{% url 'servicios' %}" role="button">Ver Servicios</a>
         </div>
     </main>
     <footer class= footer "bg-dark text-white text-center py-3 mt-4">
         <div class="container">
             <p>&copy; 2024 Mapstruck. Todos los derechos reservados.</p>
-            <p><a href="./contacto.html">Contacto</a>| Enlaces Rápidos | Redes Sociales | Nuestro Blog</p>
+            <p><a href="{% url 'contacto' %}">Contacto</a>| Enlaces Rápidos | Redes Sociales | Nuestro Blog</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
