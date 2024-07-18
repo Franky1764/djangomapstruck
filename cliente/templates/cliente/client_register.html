@@ -1,4 +1,4 @@
-<!-- myapp/templates/myapp/client_register.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,23 +14,41 @@
             <h1 class="logo">Mapstruck</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'home' %}">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'about' %}">Sobre Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'services' %}">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'contact' %}">Contacto</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'client_register' %}">Inscríbete aquí</a></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main class="container mt-4">
-        <h1>Registro Clientes</h1>
+        <h1 class="text-center">Registro Clientes</h1>
         <div class="contact">
             <form method="post" novalidate>
                 {% csrf_token %}
-                {{ client_form.as_p }}
-                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#vehicleModal">Registrar Vehículo</button>
+                <div class="form-group">
+                    <label for="clientname"><b>Nombre</b></label>
+                    <input type="text" class="form-control" id="clientname" name="name" placeholder="Ingrese su nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientlastname"><b>Apellidos</b></label>
+                    <input type="text" class="form-control" id="clientlastname" name="apellidos" placeholder="Ingrese sus apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="clientAddress"><b>Dirección</b></label>
+                    <input type="text" class="form-control" id="clientAddress" name="clientAddress" placeholder="Ingrese su dirección" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactPhone"><b>Teléfono de contacto</b></label>
+                    <input type="text" class="form-control" id="contactPhone" name="contactPhone" placeholder="Teléfono de contacto" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail"><b>Email de contacto</b></label>
+                    <input type="email" class="form-control" id="contactEmail" name="contactEmail" placeholder="ejemplo@email.com" required>
+                </div>
+                <button type="button" class="btn btn-outline-danger mt-3" data-bs-toggle="modal" data-bs-target="#vehicleModal">Registrar Vehículo</button>
                 <br><br>
-                {{ vehicle_form.as_p }}
                 <button type="submit" class="btn btn-dark btn-block">Registrarse</button>
             </form>
         </div>
@@ -45,9 +63,39 @@
                 </div>
                 <div class="modal-body">
                     <form id="vehicleForm">
-                        {{ vehicle_form.as_p }}
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <div class="form-group">
+                            <label for="brand">Marca</label>
+                            <input type="text" class="form-control" id="brand" name="brand" placeholder="Ingrese la marca del vehículo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="model">Modelo</label>
+                            <input type="text" class="form-control" id="model" name="model" placeholder="Ingrese el modelo del vehículo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year">Año</label>
+                            <input type="number" class="form-control" id="year" name="year" placeholder="Ingrese el año del vehículo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="plateNumber">Número de Placa</label>
+                            <input type="text" class="form-control" id="plateNumber" name="plateNumber" placeholder="Ingrese el número de placa" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="text" class="form-control" id="color" name="color" placeholder="Ingrese el color del vehículo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="vin">Número de Identificación del Vehículo (VIN)</label>
+                            <input type="text" class="form-control" id="vin" name="vin" placeholder="Ingrese el VIN del vehículo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ownerName">Nombre del Propietario</label>
+                            <input type="text" class="form-control" id="ownerName" name="ownerName" placeholder="Ingrese el nombre del propietario" required>
+                        </div>
+                        <button type="submit" id="submitVehicle" class="btn btn-primary btn-block mt-3">Registrar Vehículo</button>
                     </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
