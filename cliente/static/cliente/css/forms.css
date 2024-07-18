@@ -31,11 +31,12 @@ nav .nav-link {
 
 .contact {
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
     margin: 20px auto;
     padding: 40px;
     background: gray;
     border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -51,11 +52,12 @@ label {
 
 .form-control {
     width: 100%;
-    height: 30px;
+    height: 40px;
     border: none;
-    border-radius: 3px;
-    padding-left: 8px;
+    border-radius: 5px;
+    padding-left: 10px;
     margin-bottom: 15px;
+    font-size: 16px;
 }
 
 #Message {
@@ -64,9 +66,9 @@ label {
 
 .btn-block {
     width: 100%;
-    height: 40px;
+    height: 50px;
     border: none;
-    border-radius: 17px;
+    border-radius: 5px;
     background-color: #000;
     color: white;
     font-weight: bold;
@@ -92,4 +94,29 @@ label {
     text-align: center;
     padding: 10px 0;
     bottom: 0;
+}
+
+.modal .form-group {
+    margin-bottom: 15px;
+}
+
+.modal .form-control {
+    height: 40px;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.modal .btn-block {
+    height: 50px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.modal .btn-block:hover {
+    background-color: #0056b3;
 }
