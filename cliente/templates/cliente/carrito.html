@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Mapstruck</title>
+    {% load static %}
+    <link href="{% static 'cliente/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cliente/css/otherstyle.css' %}">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="logo">Mapstruck</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'index' %}">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'nosotros' %}">Sobre Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'servicios' %}">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'client_register' %}">Inscríbete aquí</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'reservas' %}">Reservas</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'carrito' %}">Carrito</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container mt-4">
+        <h2 class="text-center mb-4">Carrito de Compras</h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Servicio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se mostrarán los elementos del carrito -->
+                </tbody>
+            </table>
+        </div>
+        <div class="text-right">
+            <h4>Total: $<span id="total">0.00</span></h4>
+            <button class="btn btn-success" onclick="checkout()">Proceder al Pago</button>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Mapstruck. Todos los derechos reservados.</p>
+            <p><a href="{% url 'contacto' %}">Contacto</a> | Enlaces Rápidos | Redes Sociales</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Ejemplo de datos del carrito (deberían venir del servidor o estar en el local storage)
+        const cartItems = [
+            { service: 'Revisión Técnica', quantity: 1, price: 15000.00 },
+            { service: 'Cambio de Aceite', quantity: 2, price: 5500.00 }
+        ];
+
+        // Función para renderizar el carrito
+        function renderCart() {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            let total = 0;
+
+            cartItems.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.service}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>$${(item.quantity * item.price).toFixed(2)}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="removeItem('${item.service}')">Eliminar</button></td>
+                `;
+                tbody.appendChild(row);
+                total += item.quantity * item.price;
+            });
+
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+
+        // Función para eliminar un elemento del carrito
+        function removeItem(service) {
+            const index = cartItems.findIndex(item => item.service === service);
+            if (index > -1) {
+                cartItems.splice(index, 1);
+                renderCart();
+            }
+        }
+
+        // Función para proceder al pago
+        function checkout() {
+            fetch('/create-checkout-session/', {
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(session => {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .then(result => {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Renderizar el carrito al cargar la página
+        document.addEventListener('DOMContentLoaded', renderCart);
+    </script>
+</body>
+</html>
