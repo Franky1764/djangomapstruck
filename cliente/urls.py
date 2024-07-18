@@ -11,4 +11,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('client-register/', views.client_register_view, name='client_register'),
     path('success/', views.success_view, name='success'),
+    path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
 ]
