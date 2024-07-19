@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClientForm, VehicleForm, ReservaForm
 from django.contrib import messages
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from .forms import ClientForm, VehicleForm
+from .models import Client, Vehicle
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -85,3 +87,49 @@ def carrito(request):
 
 def success_view(request):
     return render(request, 'cliente/success.html')
+
+def client_list(request):
+    clients = Client.objects.all()
+    return render(request, 'cliente/client_list.html', {'clients': clients})
+
+def client_create(request):
+    if request.method == 'POST':
+        form = ClientForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('client_list')
+    else:
+        form = ClientForm()
+    return render(request, 'cliente/client_form.html', {'form': form})
+
+def client_update(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+    if request.method == 'POST':
+        form = ClientForm(request.POST, instance=client)
+        if form.is_valid():
+            form.save()
+            return redirect('client_list')
+    else:
+        form = ClientForm(instance=client)
+    return render(request, 'cliente/client_form.html', {'form': form})
+
+def client_delete(request, pk):
+    client = get_object_or_404(Client, pk=pk)
+    if request.method == 'POST':
+        client.delete()
+        return redirect('client_list')
+    return render(request, 'cliente/client_confirm_delete.html', {'client': client})
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/signup.html', {'form': form})
