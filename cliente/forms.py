@@ -1,4 +1,5 @@
 from django import forms
+from .models import Client, Vehicle
 
 class ClientForm(forms.Form):
     name = forms.CharField(label='Nombre', max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Ingrese su nombre'}))
@@ -22,3 +23,13 @@ class ReservaForm(forms.Form):
     vehiculo = forms.CharField(max_length=100)
     fecha = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
     hora = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['name', 'apellidos', 'clientAddress', 'contactPhone', 'contactEmail']
+
+class VehicleForm(forms.ModelForm):
+    class Meta:
+        model = Vehicle
+        fields = ['brand', 'model', 'year', 'plateNumber', 'color', 'vin', 'owner']
