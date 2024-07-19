@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,3 +126,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_SECRET_KEY = 'sk_test_51PdttjCbUIdfMh5n74gadpdakKbGcGMjvwpdAPsyMP3QyzFQdR0ZjMKkxRdU92j8RV4C3T52tiBirQtyahptoiWF00ZEvCqmGK'
 STRIPE_PUBLIC_KEY = 'pk_test_51PdttjCbUIdfMh5nQW6FIDoyOE5G4bPvzuGY8cmVDaOdJR8KupkOC2wx5hnUMGxl3ykVj42asVru9pdajQ5VzJqG0024b2hNQw'
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClientForm, VehicleForm, ReservaForm
+from django.contrib import messages
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
@@ -28,8 +29,10 @@ def client_register_view(request):
         client_form = ClientForm(request.POST)
         vehicle_form = VehicleForm(request.POST)
         if client_form.is_valid() and vehicle_form.is_valid():
-            # Procesar los datos del formulario
-            return redirect('success')
+            client_form.save()
+            vehicle_form.save()
+            messages.success(request, '¡Registro completado exitosamente!')
+            return redirect('client_register')
     else:
         client_form = ClientForm()
         vehicle_form = VehicleForm()
