@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva de Horas - Mapstruck</title>
+    <title>Éxito - Mapstruck</title>
     {% load static %}
     <link href="{% static 'cliente/css/bootstrap.min.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'cliente/css/otherstyle.css' %}">
@@ -25,12 +25,11 @@
         </div>
     </header>
     <main class="container mt-4">
-        <h2 class="text-center mb-4">Reserva de Horas</h2>
-        <form method="post" action="{% url 'reservas' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary btn-block mt-3">Reservar</button>
-        </form>
+        <h2 class="text-center mb-4">¡Éxito!</h2>
+        <p class="text-center">Tu operación se ha realizado con éxito.</p>
+        <div class="text-center">
+            <a href="{% url 'index' %}" class="btn btn-primary">Volver al Inicio</a>
+        </div>
     </main>
     <footer class="footer">
         <div class="container">
@@ -40,6 +39,6 @@
     </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrap.com/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

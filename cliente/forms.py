@@ -15,3 +15,10 @@ class VehicleForm(forms.Form):
     color = forms.CharField(label='Color', max_length=50, required=True, widget=forms.TextInput(attrs={'placeholder': 'Ingrese el color del vehículo'}))
     vin = forms.CharField(label='Número de Identificación del Vehículo (VIN)', max_length=17, required=True, widget=forms.TextInput(attrs={'placeholder': 'Ingrese el VIN del vehículo'}))
     ownerName = forms.CharField(label='Nombre del Propietario', max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Ingrese el nombre del propietario'}))
+
+class ReservaForm(forms.Form):
+    nombre = forms.CharField(max_length=100)
+    apellido = forms.CharField(max_length=100)
+    vehiculo = forms.CharField(max_length=100)
+    fecha = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    hora = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))

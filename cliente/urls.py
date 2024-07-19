@@ -10,6 +10,8 @@ urlpatterns = [
     path('servicios', views.servicios, name='servicios'),
     path('admin/', admin.site.urls),
     path('client-register/', views.client_register_view, name='client_register'),
-    path('success/', views.success_view, name='success'),
+    path('success', views.success_view, name='success'),
+    path('reservas', views.reservas, name='reservas'),
     path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
+    path('carrito', views.carrito, name='carrito'),
 ]

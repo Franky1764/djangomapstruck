@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import ClientForm, VehicleForm
+from .forms import ClientForm, VehicleForm, ReservaForm
 import stripe
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -39,6 +38,16 @@ def client_register_view(request):
 def success_view(request):
     return render(request, 'cliente/success.html')
 
+def reservas(request):
+    if request.method == 'POST':
+        form = ReservaForm(request.POST)
+        if form.is_valid():
+            # Procesar la reserva y guardar en la base de datos si es necesario
+            return redirect('success')
+    else:
+        form = ReservaForm()
+    return render(request, 'cliente/reservas.html', {'form': form})
+
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'POST':
@@ -66,3 +75,10 @@ def create_checkout_session(request):
             })
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+def carrito(request):
+    context = {}
+    return render(request, 'cliente/carrito.html', context)
+
+def success_view(request):
+    return render(request, 'cliente/success.html')
