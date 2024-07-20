@@ -5,8 +5,9 @@ import stripe
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from .forms import ClientForm, VehicleForm
-from .models import Client, Vehicle
+from .models import Client, Vehicle, Reserva
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -31,8 +32,10 @@ def client_register_view(request):
         client_form = ClientForm(request.POST)
         vehicle_form = VehicleForm(request.POST)
         if client_form.is_valid() and vehicle_form.is_valid():
-            client_form.save()
-            vehicle_form.save()
+            client = client_form.save()
+            vehicle = vehicle_form.save(commit=False)
+            vehicle.owner = client
+            vehicle.save()
             messages.success(request, '¡Registro completado exitosamente!')
             return redirect('client_register')
     else:
@@ -47,7 +50,8 @@ def reservas(request):
     if request.method == 'POST':
         form = ReservaForm(request.POST)
         if form.is_valid():
-            # Procesar la reserva y guardar en la base de datos si es necesario
+            form.save()
+            messages.success(request, '¡Reserva completada exitosamente!')
             return redirect('success')
     else:
         form = ReservaForm()
@@ -84,9 +88,6 @@ def create_checkout_session(request):
 def carrito(request):
     context = {}
     return render(request, 'cliente/carrito.html', context)
-
-def success_view(request):
-    return render(request, 'cliente/success.html')
 
 def client_list(request):
     clients = Client.objects.all()
@@ -133,3 +134,14 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def modificareserva(request, pk):
+    reserva = get_object_or_404(Reserva, pk=pk)
+    if request.method == 'POST':
+        form = ReservaForm(request.POST, instance=reserva)
+        if form.is_valid():
+            form.save()
+            return redirect('reservas')
+    else:
+        form = ReservaForm(instance=reserva)
+    return render(request, 'cliente/modificareserva.html', {'form': form})

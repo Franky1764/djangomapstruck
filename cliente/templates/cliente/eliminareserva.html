@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'icons/yelp.svg' %}">
+  <title>Eliminar Reserva</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="d-flex h-100">
+        <div class="sidebar nav flex-column align-items-center align-items-sm-start d-flex px-3 col-sm-auto pt-2 text-white min-vh-100" style="position: fixed;">
+            <div class="d-flex align-items-center">
+                <i class="bi-yelp fs-2"></i>
+                <div class="text-sm-start fs-3  fs-md-1 d-sm-inline d-none">Mapstruck</div>
+            </div>
+            <hr class="w-100 mt-3 mb-3">
+            <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'client_register' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-person-plus"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Registrar Cliente</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'servicios' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-gear"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Servicios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'reservas' %}" class="nav-link align-middle rounded-pill selected">
+                        <i class="fs-2 bi-calendar"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Reservas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'contacto' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-envelope"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Contacto</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown position-absolute bottom-0 mb-3 rounded-pill usuario">
+                <a href="#" class="d-flex align-items-center text-decoration-none 
+                dropdown-toggle text-white" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi-person-circle fs-2"></i>
+                    <span class="d-none d-sm-inline mx-1">{{ user.username }}</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item" href="#">Ajustes de cuenta</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}" id="cerrarSesion">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="contenido align-self-end min-vh-100">
+            <div class="container">
+                <div class="row d-flex justify-content-center align-content-center">
+                    <nav class="navbar fixed-top navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
+                        <div class="col-2 fecha text-center px-1" id="fecha"></div>
+                        <div class="col-2 money text-center px-1" id="uf"></div>
+                        <div class="col-2 money text-center px-1" id="dolar"></div>
+                        <div class="col-2 money text-center px-1" id="euro"></div>
+                        <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
+                    </nav>
+                </div>
+                
+                <div class="content align-items-center" style="margin-top: 150px;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Eliminar Reserva</h5>
+                            <p class="card-text">¿Estás seguro que deseas eliminar esta reserva?</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <a href="{% url 'reservas' %}" class="btn btn-secondary">Cancelar</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

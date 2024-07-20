@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'icons/yelp.svg' %}">
+  <title>Editar Reserva</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="d-flex h-100">
+        <div class="sidebar nav flex-column align-items-center align-items-sm-start d-flex px-3 col-sm-auto pt-2 text-white min-vh-100" style="position: fixed;">
+            <div class="d-flex align-items-center">
+                <i class="bi-yelp fs-2"></i>
+                <div class="text-sm-start fs-3  fs-md-1 d-sm-inline d-none">Mapstruck</div>
+            </div>
+            <hr class="w-100 mt-3 mb-3">
+            <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'client_register' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-person-plus"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Registrar Cliente</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'servicios' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-gear"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Servicios</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'reservas' %}" class="nav-link align-middle rounded-pill selected">
+                        <i class="fs-2 bi-calendar"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Reservas</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'contacto' %}" class="nav-link align-middle px-0 text-white">
+                        <i class="fs-2 bi-envelope"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Contacto</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="dropdown position-absolute bottom-0 mb-3 rounded-pill usuario">
+                <a href="#" class="d-flex align-items-center text-decoration-none 
+                dropdown-toggle text-white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi-person-circle fs-2"></i>
+                    <span class="d-none d-sm-inline mx-1">{{ user.username }}</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Perfil</a>
+                    <a class="dropdown-item" href="#">Ajustes de cuenta</a>
+                    <hr>
+                    <a class="dropdown-item" href="{% url 'logout' %}" id="cerrarSesion">Cerrar Sesion</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contenido align-self-end min-vh-100">
+            <div class="container">
+                <div class="row d-flex justify-content-center align-content-center">
+                    <nav class="navbar fixed navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
+                        <div class="col-2 fecha text-center px-1" id="fecha"></div>
+                        <div class="col-2 money text-center px-1" id="uf"></div>
+                        <div class="col-2 money text-center px-1" id="dolar"></div>
+                        <div class="col-2 money text-center px-1" id="euro"></div>
+                        <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
+                    </nav>
+                </div>
+                
+                <div class="content align-items-center" style="margin-top: 150px;">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Editar Reserva</h5>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ form.nombre.value }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="apellido" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" name="apellido" value="{{ form.apellido.value }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vehiculo" class="form-label">Vehículo</label>
+                                    <input type="text" class="form-control" id="vehiculo" name="vehiculo" value="{{ form.vehiculo.value }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fecha" class="form-label">Fecha</label>
+                                    <input type="date" class="form-control" id="fecha" name="fecha" value="{{ form.fecha.value }}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="hora" class="form-label">Hora</label>
+                                    <input type="time" class="form-control" id="hora" name="hora" value="{{ form.hora.value }}">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                <a href="{% url 'reservas' %}" class="btn btn-secondary">Cancelar</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

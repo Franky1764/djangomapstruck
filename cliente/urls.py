@@ -1,27 +1,24 @@
 from django.contrib import admin
-from django.urls import path
-from . import views
-from cliente import views
+from django.urls import path, include
+from cliente import views as cliente_views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('nosotros', views.nosotros, name='nosotros'),
-    path('contacto', views.contacto, name='contacto'),
-    path('servicios', views.servicios, name='servicios'),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('cliente/', include('cliente.urls')),
-    path('client-register/', views.client_register_view, name='client_register'),
-    path('success', views.success_view, name='success'),
-    path('reservas', views.reservas, name='reservas'),
-    path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
-    path('carrito', views.carrito, name='carrito'),
-    path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
-    path('signup/', views.signup, name='signup'),
-    path('clients/', views.client_list, name='client_list'),
-    path('clients/new/', views.client_create, name='client_create'),
-    path('clients/<int:pk>/edit/', views.client_update, name='client_update'),
-    path('clients/<int:pk>/delete/', views.client_delete, name='client_delete'),
+    path('', cliente_views.index, name='index'),
+    path('nosotros', cliente_views.nosotros, name='nosotros'),
+    path('contacto', cliente_views.contacto, name='contacto'),
+    path('servicios', cliente_views.servicios, name='servicios'),
+    path('client-register/', cliente_views.client_register_view, name='client_register'),
+    path('success', cliente_views.success_view, name='success'),
+    path('reservas', cliente_views.reservas, name='reservas'),
+    path('create-checkout-session/', cliente_views.create_checkout_session, name='create_checkout_session'),
+    path('carrito', cliente_views.carrito, name='carrito'),
+    path('signup/', cliente_views.signup, name='signup'),
+    path('clients/', cliente_views.client_list, name='client_list'),
+    path('clients/new/', cliente_views.client_create, name='client_create'),
+    path('clients/<int:pk>/edit/', cliente_views.client_update, name='client_update'),
+    path('clients/<int:pk>/delete/', cliente_views.client_delete, name='client_delete'),
+    path('reservas/<int:pk>/edit/', cliente_views.modificareserva, name='modificareserva'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
